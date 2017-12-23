@@ -1,0 +1,1 @@
+const String FIX_ADMIN_PASSWORD = "123456";
