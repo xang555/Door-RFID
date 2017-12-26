@@ -1,1 +1,2 @@
-const String FIX_ADMIN_PASSWORD = "123456";
+const String FIX_ADMIN_PASSWORD = "1234";
+const uint8_t FIX_ADMIN_PASSWD_LENGHT = 4;
