@@ -50,7 +50,7 @@ EDB db(&writer, &reader);
 
 
 bool findRfidCardByUUID(String uuid){
-    for(uint8_t recno = 1 ; recno <= db.count(); recno ++){
+    for(int recno = 1 ; recno <= db.count(); recno ++){
         db.readRec(recno, EDB_REC users);
          if(strcmp(users.uuid,uuid.c_str()) == 0){
              return true;
@@ -64,7 +64,8 @@ long AddRfidCard(String uuid) {
     if(findRfidCardByUUID(uuid)) {
         return 0;
     }else {
-     uid = millis();
+     randomSeed(analogRead(A0));   
+     uid = random(1000,9999);
      users.uid = uid;
      strcpy(users.uuid,uuid.c_str());
      db.appendRec(EDB_REC users);
@@ -72,6 +73,31 @@ long AddRfidCard(String uuid) {
     return uid;
 } // add cardd to database
 
+bool deleteByCardId(String uuid)
+{
+  for(int recno = 1 ; recno <= db.count(); recno ++){
+        db.readRec(recno, EDB_REC users);
+         if(strcmp(users.uuid,uuid.c_str()) == 0){
+           EDB_Status status = db.deleteRec(recno);
+           if(status == EDB_OK) return true;
+         }   
+    }
+    return false;  
+} // delete by uuid
+
+bool deleteByUid(int uid)
+{
+  for(int recno = 1 ; recno <= db.count(); recno ++){
+        db.readRec(recno, EDB_REC users);
+         if(users.uid == uid){
+           EDB_Status status  =  db.deleteRec(recno);
+             if(status == EDB_OK){
+                 return true;
+             }
+         }   
+    }  
+    return false;
+} // delete by uid
 
 /* ----------------- get Button Clcik ------------- */
 
@@ -163,8 +189,18 @@ void handleScanCard(uint8_t& state) {
     mlcd.lcd_default_screen();
 
     while(getButtonClick() != ENT_BUTTON) {
-
         Serial.println("read card and processing");
+
+        String uuid = mrfid.readRDIDCard();
+        if(uuid != ""){
+          if(findRfidCardByUUID(uuid)){
+              Serial.println("Access ok");
+              delay(2000);
+          }else {
+              Serial.println("Access fail");
+              delay(2000);
+          }      
+        }
 
         yield();
     }
@@ -172,14 +208,12 @@ void handleScanCard(uint8_t& state) {
     state = 1;
 } 
 
-
-/* ------------------ handle authentication -------------------------*/
-
+/*------------------- handle enter number ---------------------*/
 const uint8_t _position_cursor_default = 4;
 
-String handleEnterPassword(uint8_t _position) {
+String handleEnterNumber(uint8_t& state,uint8_t _position) {
 
-  uint8_t num = -1;
+  int num = -1;
   uint8_t col = _position_cursor_default + _position;
   Serial.println(col);
   uint8_t button_key = 0;
@@ -208,6 +242,9 @@ String handleEnterPassword(uint8_t _position) {
         mlcd.posion(col, 1);
         mlcd.printchar(str.c_str());
         mlcd.posion(col, 1);
+   }else if(button_key == EXT_BUTTON){
+       state = state - 1;
+       return "";
    }
 
     yield();
@@ -220,7 +257,10 @@ String handleEnterPassword(uint8_t _position) {
  }   
  mlcd.posion((col + 1) , 1); // next cursor posion
  return num < 0 ? "0":String(num);   
+
 } // handle enter password
+
+/* ------------------ handle authentication -------------------------*/
 
 void handleAuthentication(uint8_t& state){
 
@@ -234,7 +274,10 @@ void handleAuthentication(uint8_t& state){
            case 0 :
                 mlcd.lcd_login_screen();
                 while(passwd.length() != FIX_ADMIN_PASSWD_LENGHT) {
-                    passwd += handleEnterPassword(passwd.length());  
+                    if(state == 0) {
+                        return;
+                    }
+                    passwd += handleEnterNumber(state,passwd.length());  
                     yield();
                  }
                  
@@ -270,6 +313,9 @@ void handleOptionMenu(uint8_t& state) {
            return;
         }else if(btn_key == BAM_BUTTON){
             state = 4; //handle delete rfid card
+            return;
+        }else if(btn_key == EXT_BUTTON) {
+            state = 0;
             return;
         }
 
@@ -335,10 +381,126 @@ void handleAddRfidCard(uint8_t& state) {
 /* ------------------- handle Delete rfid card -----------------*/
 
 void handleDeleteRfidCard(uint8_t& state) {
-
-
-
+    mlcd.lcd_delete_card_option_screen();
+    uint8_t btn_key = -1;
+    while(true) {
+        btn_key = getButtonClick();
+        if(btn_key == NAP_BUTTON) { // delete by Card
+            state = 5;
+            return;
+        }else if(btn_key == BAM_BUTTON) { // deelte by uid
+            state = 6;
+            return;
+        }else if(btn_key == EXT_BUTTON){ // return
+            state = 2;
+            return;
+        }
+    }
 }
+
+
+void handleDeleteRfidByCardID(uint8_t& state) {
+
+    uint8_t delete_step_state = 0;
+
+    while(true){
+
+      switch(delete_step_state) {
+
+        case 0 :
+                mlcd.lcd_delete_by_card_screen();
+
+                while(delete_step_state == 0){
+                  if(getButtonClick() == EXT_BUTTON){
+                        delete_step_state = -1;
+                  }else {
+                    String uuid = mrfid.readRDIDCard();
+                    if(uuid != ""){
+                        if(deleteByCardId(uuid)){
+                            delete_step_state = 1;
+                        }else  {
+                            delete_step_state = 2;
+                        }    
+                    }
+                }
+
+                } //while
+
+            break;
+        
+        case 1 :
+            mlcd.lcd_delete_finish_screen();
+            delay(3000);
+            delete_step_state = 0;
+            break;
+
+        case 2 :
+            mlcd.lcd_delete_fail_screen();
+            delay(3000);
+            delete_step_state = 0;
+            break;
+
+        default :
+            state = 4;
+            return;            
+        }
+
+    }
+
+} // hsndle delete by card id
+
+
+void handleDeleteRfidByUID(uint8_t& state) {
+    String uid = "";
+    uint8_t state_del_by_uid = 0;
+
+    while(true) {
+
+     switch(state_del_by_uid) {  
+
+        case 0 :
+            mlcd.lcd_delete_by_UID_screen();
+            while(uid.length() != 4){
+                if(state == 5){ // if state is 5 user is exit 
+                    state = 4;
+                    state_del_by_uid = -1;
+                    return;
+                }
+                uid += handleEnterNumber(state,uid.length());
+                yield();
+            }
+            state_del_by_uid = 1;
+
+            break;
+        
+        case 1 :
+         if(uid.length() <= 0) {
+             state_del_by_uid = 0;
+             return;
+         }    
+         if(deleteByUid(uid.toInt())){
+             mlcd.lcd_delete_finish_screen();
+             delay(3000);
+            state_del_by_uid = -1;
+         }else {
+             mlcd.lcd_delete_fail_screen();
+             delay(3000);
+             state_del_by_uid = 0;
+         }   
+
+            uid = "";
+
+            break;
+
+        default :
+            state = 4;
+            return;
+     } 
+
+    }
+
+} // handle delete by uid
+
 
 /*------------------------ setup ----------------------*/
 
@@ -389,6 +551,13 @@ case 3 :
     break;    
 case 4:
     handleDeleteRfidCard(state);
+    break;
+case 5 :
+    handleDeleteRfidByCardID(state);
+    break;
+case 6 :
+    handleDeleteRfidByUID(state);
+    break;
 
 }
 

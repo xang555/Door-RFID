@@ -15,6 +15,7 @@ public :
     void lcd_delete_by_card_screen();
     void lcd_delete_by_UID_screen();
     void lcd_delete_finish_screen();
+    void lcd_delete_fail_screen();
     void printchar(const char[]);
     void posion(uint8_t col , uint8_t row);
     void lcd_clear();

@@ -15,6 +15,7 @@ void LCD::lcd_default_screen(){
     this->mlcd.print("LaoItDev");
     this->mlcd.setCursor(0,1);
     this->mlcd.print("Setting  <Enter>");
+    this->mlcd.cursor_off();
 }
 
 void LCD::lcd_login_screen() {
@@ -31,6 +32,7 @@ void LCD::lcd_option_menu_screen(){
     this->mlcd.print("Add Card <UP>");
     this->mlcd.setCursor(0,1);
     this->mlcd.print("Delete Card <Dn>");
+    this->mlcd.cursor_off();
 }
 
 void LCD::lcd_add_card_screen(){
@@ -39,6 +41,7 @@ void LCD::lcd_add_card_screen(){
     this->mlcd.print("Waiting ... card");
     this->mlcd.setCursor(5,1);
     this->mlcd.print("...");
+    this->mlcd.cursor_off();
 }
 
 void LCD::lcd_add_finish_screen(const char uid[],const char uuid[]){
@@ -51,6 +54,47 @@ void LCD::lcd_add_finish_screen(const char uid[],const char uuid[]){
     this->mlcd.print("uuid:");
     this->mlcd.setCursor(5,1);
     this->mlcd.printstr(uuid);
+    this->mlcd.cursor_off();
+}
+
+void LCD::lcd_delete_card_option_screen(){
+    this->mlcd.clear();
+    this->mlcd.setCursor(2,0);
+    this->mlcd.print("by Card <Up>");
+    this->mlcd.setCursor(2,1);
+    this->mlcd.print("by Uid <Dn>");
+    this->mlcd.cursor_off();
+}
+
+void LCD::lcd_delete_by_card_screen(){
+    this->mlcd.clear();
+    this->mlcd.setCursor(0,0);
+    this->mlcd.print("Waiting ... Card");
+    this->mlcd.setCursor(6,1);
+    this->mlcd.print(" ... ");
+    this->mlcd.cursor_off();
+}
+
+void LCD::lcd_delete_by_UID_screen(){
+    this->mlcd.clear();
+    this->mlcd.setCursor(4,0);
+    this->mlcd.print("Enter UID");
+    this->mlcd.setCursor(4,1);
+    this->mlcd.cursor_on();
+}
+
+void LCD::lcd_delete_finish_screen(){
+    this->mlcd.clear();
+    this->mlcd.setCursor(2,0);
+    this->mlcd.print("Delete Success");
+    this->mlcd.cursor_off();
+}
+
+void LCD::lcd_delete_fail_screen(){
+    this->mlcd.clear();
+    this->mlcd.setCursor(2,0);
+    this->mlcd.print("Delete Fail");
+    this->mlcd.cursor_off();
 }
 
 void LCD::printchar(const char ch[]){
