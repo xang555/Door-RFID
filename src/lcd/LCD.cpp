@@ -85,7 +85,7 @@ void LCD::lcd_delete_by_UID_screen(){
 
 void LCD::lcd_delete_finish_screen(){
     this->mlcd.clear();
-    this->mlcd.setCursor(2,0);
+    this->mlcd.setCursor(1,0);
     this->mlcd.print("Delete Success");
     this->mlcd.cursor_off();
 }

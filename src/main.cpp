@@ -16,9 +16,9 @@
 #define BACK_AND_MINUST_BUTTON 4
 #define ENTER_BUTTON 3
 #define EXIT_BUTTON  2
-#define RELAY_SWITCH 6
+#define RELAY_SWITCH 8
 
-#define DEBUG
+//#define DEBUG
 
 const uint8_t NAP_BUTTON = 0;
 const uint8_t BAM_BUTTON = 1;
@@ -28,6 +28,13 @@ const uint8_t EXT_BUTTON = 3;
 
 rfid mrfid(SS_PIN,RST_PIN); // RFID 
 LCD mlcd(16,2);
+
+// ----------- buzzer -----------------//
+void tone_on(){
+  analogWrite(A1,500);
+  delay(50);
+  analogWrite(A1,0);
+}
 
 //-------------- databse ---------------//
 struct Users {
@@ -135,10 +142,11 @@ uint8_t getButtonClick() {
   if(checkButtonIsClick(NEXT_AND_PUSH_BUTTON)){
      state = 0;
   }  
-
+    #ifdef DEBUG
     Serial.println("NEXT  ");
     Serial.print(state);
     Serial.println();
+    #endif
 
     return state ;
 
@@ -148,9 +156,11 @@ uint8_t getButtonClick() {
      state = 1;
   }  
 
+    #ifdef DEBUG
    Serial.println("BACK ");
     Serial.print(state);
     Serial.println();
+    #endif
 
     return state ;
 
@@ -160,26 +170,33 @@ uint8_t getButtonClick() {
      state = 2;
     }  
 
+    #ifdef DEBUG
     Serial.println("ENTER  ");
     Serial.print(state);
     Serial.println();
+    #endif
 
     return state ;
 
   }else if(digitalRead(EXIT_BUTTON) == LOW){
 
- if(checkButtonIsClick(EXIT_BUTTON)){
+    if(checkButtonIsClick(EXIT_BUTTON)){
      state = 3;
-  } 
+     } 
 
-   Serial.println("EXIT  ");
+    #ifdef DEBUG
+    Serial.println("EXIT  ");
     Serial.print(state);
     Serial.println(); 
+    #endif
 
    return state; 
  }
 
- Serial.println("NO KEY");
+ #ifdef DEBUG
+  Serial.println("NO KEY");
+ #endif
+
  return -1;
 }
 
@@ -189,17 +206,31 @@ void handleScanCard(uint8_t& state) {
     mlcd.lcd_default_screen();
 
     while(getButtonClick() != ENT_BUTTON) {
+        #ifdef DEBUG
         Serial.println("read card and processing");
+        #endif
 
         String uuid = mrfid.readRDIDCard();
         if(uuid != ""){
           if(findRfidCardByUUID(uuid)){
+              #ifdef DEBUG
               Serial.println("Access ok");
               delay(2000);
+              #endif
+              tone_on(); // tone 
+              digitalWrite(RELAY_SWITCH,LOW);
+              delay(3000);
+              digitalWrite(RELAY_SWITCH,HIGH);
           }else {
+              #ifdef DEBUG
               Serial.println("Access fail");
               delay(2000);
-          }      
+              #endif
+              tone_on(); //tone
+              delay(100);
+              tone_on(); // tone
+          }
+
         }
 
         yield();
@@ -215,7 +246,9 @@ String handleEnterNumber(uint8_t& state,uint8_t _position) {
 
   int num = -1;
   uint8_t col = _position_cursor_default + _position;
+  #ifdef DEBUG
   Serial.println(col);
+  #endif
   uint8_t button_key = 0;
 
  while ((button_key = getButtonClick()) != ENT_BUTTON) {
@@ -348,6 +381,7 @@ void handleAddRfidCard(uint8_t& state) {
                      }else {
                         uuid = mrfid.readRDIDCard();
                         if(uuid != ""){
+                            tone_on(); //tone
                             id = AddRfidCard(uuid);
                             state_step_add = 1; 
                          } 
@@ -416,6 +450,7 @@ void handleDeleteRfidByCardID(uint8_t& state) {
                   }else {
                     String uuid = mrfid.readRDIDCard();
                     if(uuid != ""){
+                        tone_on(); //tone
                         if(deleteByCardId(uuid)){
                             delete_step_state = 1;
                         }else  {
@@ -506,12 +541,16 @@ void handleDeleteRfidByUID(uint8_t& state) {
 
 void setup()
 {
+#ifdef DEBUG    
 Serial.begin(9600);
+#endif
 pinMode(NEXT_AND_PUSH_BUTTON,INPUT);
 pinMode(BACK_AND_MINUST_BUTTON,INPUT);
 pinMode(ENTER_BUTTON,INPUT);
 pinMode(EXIT_BUTTON,INPUT);	
 pinMode(RELAY_SWITCH,OUTPUT);
+
+digitalWrite(RELAY_SWITCH,HIGH);
 mrfid.initRFID();
 mlcd.begin();
 
