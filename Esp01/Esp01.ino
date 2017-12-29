@@ -70,8 +70,8 @@ void setup() {
 	Serial.print("AP IP address: ");
 	Serial.println(myIP);
 	server.on("/", handleRoot);
-  server.on("/login",handleLogin);
-  server.on("/error",handleErrorPage);
+    server.on("/login",handleLogin);
+    server.on("/error",handleErrorPage);
 	server.on("/css/bootstrap.min.css",handleLoadBootstrap);
 	server.on("/css/bootstrap-theme.min.css",handleLoadBootStrapTheme);
 	server.on("/style.css",handleLoadStyleCss);
