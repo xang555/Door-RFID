@@ -3,6 +3,8 @@
 #include <ESP8266WebServer.h>
 #include "data.h"
 
+#define COMMAND_PIN 2
+
 /* Set these to your desired credentials. */
 const char *ssid = "Laoitdev-Door-RFID-01";
 const char *password = "12345678";
@@ -98,7 +100,12 @@ void handleSendCommand() {
   
   if(server.hasArg("cmd") && server.hasArg("submit")) {
     if(server.arg("cmd") == "1") {
-        Serial.write("open");
+
+        for(int i= 0; i < 10 ; i ++) {
+          digitalWrite(COMMAND_PIN,HIGH);
+        }
+         digitalWrite(COMMAND_PIN,LOW);
+                 
         String header = "HTTP/1.1 301 OK\r\nLocation: /success\r\nCache-Control: no-cache\r\n\r\n";
         server.sendContent(header);
         return; 
@@ -114,10 +121,12 @@ void handleSendCommand() {
 
 
 void setup() {
-	delay(1000);
 	Serial.begin(115200);
 	Serial.println();
 	Serial.print("Configuring access point...");
+  pinMode(COMMAND_PIN,OUTPUT);
+  digitalWrite(COMMAND_PIN,LOW);
+  
 	/* You can remove the password parameter if you want the AP to be open. */
 	WiFi.softAP(ssid, password);
 
