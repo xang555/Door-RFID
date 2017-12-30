@@ -238,7 +238,7 @@ void handleScanCard(uint8_t& state) {
               digitalWrite(RELAY_SWITCH,HIGH);
         }
 
-        if(is_esp_open_door()){
+        if(is_esp_open_door()){ 
              #ifdef DEBUG
               Serial.println("ESP send command for open the door");
               delay(2000);
