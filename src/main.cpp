@@ -18,6 +18,7 @@
 #define EXIT_BUTTON  2
 #define RELAY_SWITCH 8
 #define ESP_O1_COMMAND 6
+#define EXIT_INSIDE_BUTTON 7
 
 //#define DEBUG
 
@@ -209,6 +210,12 @@ uint8_t getButtonClick() {
     return false;
  } //esp send command open door   
 
+bool is_exit_inside_click() {
+    if(digitalRead(EXIT_INSIDE_BUTTON) == LOW) {
+        return true;
+    }
+    return false;
+}
 
 /* ----------------- handle scan rfid card ----------------*/
 void handleScanCard(uint8_t& state) {
@@ -220,6 +227,17 @@ void handleScanCard(uint8_t& state) {
         Serial.println("read card and processing");
         #endif
         
+        if(is_exit_inside_click()){
+             #ifdef DEBUG
+              Serial.println("open door inside");
+              delay(2000);
+              #endif
+              tone_on(); // tone 
+              digitalWrite(RELAY_SWITCH,LOW);
+              delay(3000);
+              digitalWrite(RELAY_SWITCH,HIGH);
+        }
+
         if(is_esp_open_door()){
              #ifdef DEBUG
               Serial.println("ESP send command for open the door");
@@ -571,6 +589,7 @@ pinMode(ENTER_BUTTON,INPUT);
 pinMode(EXIT_BUTTON,INPUT);	
 pinMode(RELAY_SWITCH,OUTPUT);
 pinMode(ESP_O1_COMMAND,INPUT);
+pinMode(EXIT_INSIDE_BUTTON,INPUT);
 digitalWrite(RELAY_SWITCH,HIGH);
 mrfid.initRFID();
 mlcd.begin();

@@ -100,12 +100,9 @@ void handleSendCommand() {
   
   if(server.hasArg("cmd") && server.hasArg("submit")) {
     if(server.arg("cmd") == "1") {
-
-        for(int i= 0; i < 10 ; i ++) {
-          digitalWrite(COMMAND_PIN,HIGH);
-        }
+         digitalWrite(COMMAND_PIN,HIGH); 
+         delay(1000);
          digitalWrite(COMMAND_PIN,LOW);
-                 
         String header = "HTTP/1.1 301 OK\r\nLocation: /success\r\nCache-Control: no-cache\r\n\r\n";
         server.sendContent(header);
         return; 
