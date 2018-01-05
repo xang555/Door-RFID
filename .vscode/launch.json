@@ -6,8 +6,8 @@
             "request": "launch",
             "cwd": "${workspaceRoot}",
             "name": "PlatformIO Debugger",
-            "target": "/Users/laoitdev/Desktop/Door-RFID/.pioenvs/nanoatmega328/firmware.elf",
-            "gdbpath": "/Users/laoitdev/.platformio/penv/bin/piodebuggdb",
+            "target": "c:/Users/xang/Desktop/Door-RFID/.pioenvs/nanoatmega328/firmware.elf",
+            "gdbpath": "C:/Users/xang/.platformio/penv/Scripts/piodebuggdb",
             "autorun": [ "source .pioinit" ]
         }
     ]
