@@ -13,7 +13,7 @@
 	<body>
 
 		<div class="container button-container">
-			<button class="btn btn-default btn-circle btn-xl" onclick="openDoor()" type="button" name="submit">Open</button>	
+			<button class="btn btn-default btn-circle btn-xl" id="btn_cmd">Open</button>	
 		</div>
 	
 	</body>
@@ -27,7 +27,8 @@
 				if (this.readyState == 4 && this.status == 200) {
       				cFunction();
     			}
-			}
+			};
+			
 			xhttp.open("POST",url,true);
 			xhttp.setRequestHeader("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0");
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -40,6 +41,10 @@
 					console.log("Send Command Sucess");
 				});
 		}
+
+		document.getElementById("btn_cmd").onclick = function() {
+			openDoor();
+		};
 
 	
 	</script>

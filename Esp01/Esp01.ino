@@ -6,7 +6,7 @@
 #define COMMAND_PIN 2
 
 /* Set these to your desired credentials. */
-const char *ssid = "Laoitdev-Door-RFID-01";
+const char *ssid = "Laoitdev-Door";
 const char *password = "12345678";
 
 ESP8266WebServer server(80);
@@ -74,10 +74,6 @@ void handleErrorPage(){
     sendFile(200,"text/html",data_errorHTML,sizeof(data_errorHTML));
 }
 
-void handleSuccess() {
-   sendFile(200,"text/html",data_successHTML,sizeof(data_successHTML));
-}
-
 void handleLoadBootstrap(){
 	sendFile(200,"text/css;charset=UTF-8",data_css_bootstrap_minCSS,sizeof(data_css_bootstrap_minCSS));
 }
@@ -130,7 +126,6 @@ void setup() {
 	server.on("/", handleRoot);
   server.on("/login",handleLogin);
   server.on("/error",handleErrorPage);
-  server.on("/success",handleSuccess);
   server.on("/cmd",HTTP_POST,handleSendCommand);
   server.onNotFound(handleErrorPage);
   
