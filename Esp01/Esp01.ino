@@ -6,8 +6,8 @@
 #define COMMAND_PIN 2
 
 /* Set these to your desired credentials. */
-const char *ssid = "Laoitdev-Door";
-const char *password = "12345678";
+const char *ssid = "Laoitdev-Door-RFID-01";
+const char *password = "LaoItDeV555";
 
 ESP8266WebServer server(80);
 
