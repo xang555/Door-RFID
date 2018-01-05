@@ -13,11 +13,35 @@
 	<body>
 
 		<div class="container button-container">
-			<form action="/cmd" method="post">
-			<input type="hidden" name="cmd" value="1">	
-			<button class="btn btn-default btn-circle btn-xl" type="submit" name="submit">Open</button>	
-			</form>
+			<button class="btn btn-default btn-circle btn-xl" onclick="openDoor()" type="button" name="submit">Open</button>	
 		</div>
 	
 	</body>
+
+	<script>
+
+		function httpreq(url,cFunction) {
+			var xhttp = null;
+			xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function(){
+				if (this.readyState == 4 && this.status == 200) {
+      				cFunction();
+    			}
+			}
+			xhttp.open("POST",url,true);
+			xhttp.setRequestHeader("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10.13; rv:58.0) Gecko/20100101 Firefox/58.0");
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.setRequestHeader("token", document.cookie);
+			xhttp.send("cmd=1&submit=true");
+		}
+
+		function openDoor() {
+				httpreq("/cmd",function(){
+					console.log("Send Command Sucess");
+				});
+		}
+
+	
+	</script>
+
 </html>

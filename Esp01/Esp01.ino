@@ -15,11 +15,11 @@ ESP8266WebServer server(80);
 /* authentication */
 
 //Check if header is present and correct
-bool is_authentified(){
+bool is_authentified(String verifyfrom){
   Serial.println("Enter is_authentified");
-  if (server.hasHeader("Cookie")){   
+  if (server.hasHeader(verifyfrom)){   
     Serial.print("Found cookie: ");
-    String cookie = server.header("Cookie");
+    String cookie = server.header(verifyfrom);
     Serial.println(cookie);
     if (cookie.indexOf(verify_cookie) != -1) {
       Serial.println("Authentification Successful");
@@ -45,7 +45,7 @@ void sendFile(int code, String type, const char* adr, size_t len) {
 
 /* handle load ui page */
 void handleRoot() {
-   if (!is_authentified()){
+   if (!is_authentified("Cookie")){
     String header = "HTTP/1.1 301 OK\r\nLocation: /login\r\nCache-Control: no-cache\r\n\r\n";
     server.sendContent(header);
     return;
@@ -92,9 +92,8 @@ void handleLoadStyleCss(){
 
 void handleSendCommand() {
 
-  if (!is_authentified()){
-    String header = "HTTP/1.1 301 OK\r\nLocation: /login\r\nCache-Control: no-cache\r\n\r\n";
-    server.sendContent(header);
+  if (!is_authentified("token")){
+    server.send(401,"application/json","{\"err\" : \"401\",\"msg\":\"authentication fail\"}");
     return;
   }
   
@@ -103,14 +102,12 @@ void handleSendCommand() {
          digitalWrite(COMMAND_PIN,HIGH); 
          delay(1000);
          digitalWrite(COMMAND_PIN,LOW);
-        String header = "HTTP/1.1 301 OK\r\nLocation: /success\r\nCache-Control: no-cache\r\n\r\n";
-        server.sendContent(header);
+        server.send(200,"application/json","{\"err\" : \"0\",\"msg\":\"send command success\"}");
         return; 
     }
   }
 
-   String header = "HTTP/1.1 301 OK\r\nLocation: /error\r\nCache-Control: no-cache\r\n\r\n";
-   server.sendContent(header);
+  server.send(301,"application/json","{\"err\" : \"301\",\"msg\":\"no command\"}");
   
 }
 
@@ -142,7 +139,7 @@ void setup() {
 	server.on("/style.css",handleLoadStyleCss);
 
   //here the list of headers to be recorded
-  const char * headerkeys[] = {"User-Agent","Cookie"} ;
+  const char * headerkeys[] = {"User-Agent","Cookie","token"};
   size_t headerkeyssize = sizeof(headerkeys)/sizeof(char*);
   //ask server to track these headers
   server.collectHeaders(headerkeys, headerkeyssize );
