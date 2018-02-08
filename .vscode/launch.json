@@ -4,11 +4,13 @@
         {
             "type": "gdb",
             "request": "launch",
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceFolder}",
             "name": "PlatformIO Debugger",
             "target": "/Users/laoitdev/Desktop/Door-RFID/.pioenvs/nanoatmega328/firmware.elf",
             "gdbpath": "/Users/laoitdev/.platformio/penv/bin/piodebuggdb",
-            "autorun": [ "source .pioinit" ]
+            "autorun": [ "source .pioinit" ],
+            "preLaunchTask": "PlatformIO: Pre-Debug",
+            "internalConsoleOptions": "openOnSessionStart"
         }
     ]
 }

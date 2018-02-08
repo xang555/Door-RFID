@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/DoorRfidApp/react-native-vector-icons/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="279750fed3c920d06351dbf32889c1b48203c7ad">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/DoorRfidApp-react-native-vector-icons-unspecified_6063b18a7217f34f065c59279456270014c656fe.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.4.0_1603b0b06c5a1fd000b3d000307a71cf8c601eee.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.3.0_fa769bbbd8dae21366db0f01e98d9e08998989ff.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_d5e167788ba6ae086adad4b2283090565f8c3858.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_7b9b0ab9ac6646b4f7005adf44d947607fbbea85.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/DoorRfidApp/react-native-splash-screen/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8157618a5b248f10354e1dbfa44ddef9e617da42">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/DoorRfidApp-react-native-splash-screen-unspecified_e892a2509a519ffe1486126cd077bafcd8632e58.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.51.0/jars/libs/infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_1930a6bb707a6354888a1de00d876ca1ea615f0a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.4.0_e68f523e385c7b757779931f0cd1534075b553f8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.4.0_834407b8e9d3568be5cd2e578caa89052646ebcf.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.51.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="99941aaaf86dc5e525cd9208c2f7c9a624f4f004">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.51.0_c395fd175cd12cfdd92d4beda33ab7345b9fccee.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_d0f4d09039e99c29009a9db58d3c76221f65ff0b.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.4.0_fe8518df2013c5b125ad6f33257d172653385fd8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_ae1a6fde6ddd5e557df6945cae4537f038803a9e.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_54d4e208da917306ba46a1c21c6141fd2aa7edcc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_101d8a62c050f984e4bacf5267c0cf7e11d338b9.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.6.0/69edde9fc4b01c9fd51d25b83428837478c27254/okhttp-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="69edde9fc4b01c9fd51d25b83428837478c27254">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/okhttp-3.6.0_1cba9bc6e631147d8d6c39b58175a6cd16b77fc6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.1.0_2ec10119b16af39dab90d445ba3d1b82fc8fc132.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.4.0_f62ed8944aeff6d30b069ff9bc8e108c39a9f574.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_fdbed699bbe52ec4e266ffab7247dc027df3fdea.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/javax.inject-1_ddb0d5ab7aedee10c1154dd110d8dcbf585b3b6d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/okio-1.13.0_289539d8afea1dd0eba710ee816a2899ceb4992c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_4c8ade3fa61d2909006e2cdd3273f010dbe44a42.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_49aee3a3e8677bf9a1a48c39bdc716cac894960a.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_f7e1372bd2ef7b0e795cdc30eba0266055905970.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="23.0.1"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="/Users/laoitdev/Desktop/DoorRFIDApp/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.4.0_279d6232bad33f53017c0f96be91237088cea102.jar" />
+    </item>
+
+</items>
