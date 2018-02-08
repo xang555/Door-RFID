@@ -43,11 +43,6 @@ void handleLogin(){
     Serial.println("Log in Failed");
     return;
   }
-  sendFile(200,"text/html",data_loginHTML,sizeof(data_loginHTML));
-}
-
-void handleErrorPage(){
-    
 }
 
 void handleSendCommand() {
@@ -90,7 +85,6 @@ void setup() {
   
   server.on("/login",handleLogin);
   server.on("/cmd",HTTP_POST,handleSendCommand);
-  server.onNotFound(handleErrorPage);
   
   //here the list of headers to be recorded
   const char * headerkeys[] = {"User-Agent","token"};
