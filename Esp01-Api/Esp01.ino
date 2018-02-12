@@ -6,8 +6,8 @@
 #define COMMAND_PIN 2
 
 /* Set these to your desired credentials. */
-const char *ssid = "Laoitdev-Door-RFID-03";
-const char *password = "LaoItDeV555";
+const char *ssid = "Maker Room";
+const char *password = "maker555";
 
 ESP8266WebServer server(80);
 
@@ -17,9 +17,9 @@ bool is_authentified(String verifyfrom){
   Serial.println("Enter is_authentified");
   if (server.hasHeader(verifyfrom)){   
     Serial.print("Found Token: ");
-    String cookie = server.header(verifyfrom);
-    Serial.println(cookie);
-    if (cookie.indexOf(verify_cookie) != -1) {
+    String token = server.header(verifyfrom);
+    Serial.println(token);
+    if (token.indexOf(verify_cookie) != -1) {
       Serial.println("Authentification Successful");
       return true;
     }
@@ -33,14 +33,10 @@ void handleLogin(){
 
   if (server.hasArg("uname") && server.hasArg("passwd")){
     if (server.arg("uname") == Uname &&  server.arg("passwd") == Passwd ){
-      String header = "HTTP/1.1 301 OK\r\nSet-Cookie: "+verify_cookie+"\r\nLocation: /\r\nCache-Control: no-cache\r\n\r\n";
-      server.sendContent(header);
-      Serial.println("Log in Successful");
-      return;
+    server.send(200,"application/json","{\"err\" : \"0\",\"token\":\""+verify_cookie+"\"}");
+    return;
     }
-    String header = "HTTP/1.1 301 OK\r\nLocation: /error\r\nCache-Control: no-cache\r\n\r\n";
-    server.sendContent(header);
-    Serial.println("Log in Failed");
+    server.send(401,"application/json","{\"err\" : \"401\",\"msg\":\"authentication fail\"}");
     return;
   }
 }
@@ -52,7 +48,7 @@ void handleSendCommand() {
     return;
   }
   
-  if(server.hasArg("cmd") && server.hasArg("submit")) {
+  if(server.hasArg("cmd")) {
     if(server.arg("cmd") == "1") {
          digitalWrite(COMMAND_PIN,HIGH); 
          delay(1000);
