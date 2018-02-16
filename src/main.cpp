@@ -233,9 +233,9 @@ void handleScanCard(uint8_t& state) {
               delay(2000);
               #endif
               tone_on(); // tone 
-              digitalWrite(RELAY_SWITCH,LOW);
-              delay(3000);
               digitalWrite(RELAY_SWITCH,HIGH);
+              delay(3000);
+              digitalWrite(RELAY_SWITCH,LOW);
         }
 
         if(is_esp_open_door()){ 
@@ -244,9 +244,9 @@ void handleScanCard(uint8_t& state) {
               delay(2000);
               #endif
               tone_on(); // tone 
-              digitalWrite(RELAY_SWITCH,LOW);
-              delay(3000);
               digitalWrite(RELAY_SWITCH,HIGH);
+              delay(3000);
+              digitalWrite(RELAY_SWITCH,LOW);
         }
 
         String uuid = mrfid.readRDIDCard(); // read card
@@ -257,9 +257,9 @@ void handleScanCard(uint8_t& state) {
               delay(2000);
               #endif
               tone_on(); // tone 
-              digitalWrite(RELAY_SWITCH,LOW);
-              delay(3000);
               digitalWrite(RELAY_SWITCH,HIGH);
+              delay(3000);
+              digitalWrite(RELAY_SWITCH,LOW);
           }else {
               #ifdef DEBUG
               Serial.println("Access fail");
@@ -590,7 +590,7 @@ pinMode(EXIT_BUTTON,INPUT);
 pinMode(RELAY_SWITCH,OUTPUT);
 pinMode(ESP_O1_COMMAND,INPUT);
 pinMode(EXIT_INSIDE_BUTTON,INPUT);
-digitalWrite(RELAY_SWITCH,HIGH);
+digitalWrite(RELAY_SWITCH,LOW);
 mrfid.initRFID();
 mlcd.begin();
 
