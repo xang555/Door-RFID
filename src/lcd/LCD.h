@@ -4,7 +4,7 @@
 class LCD {
 
 public :
-    LCD(uint8_t cols , uint8_t rows,uint8_t addrs =0x27);
+    LCD(uint8_t cols , uint8_t rows,uint8_t addrs =0x3F);
     void begin();
     void lcd_default_screen();
     void lcd_login_screen();
@@ -16,6 +16,8 @@ public :
     void lcd_delete_by_UID_screen();
     void lcd_delete_finish_screen();
     void lcd_delete_fail_screen();
+    void lcd_clear_database_screen();
+    void lcd_clear_database_success();
     void printchar(const char[]);
     void posion(uint8_t col , uint8_t row);
     void lcd_clear();

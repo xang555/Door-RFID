@@ -108,3 +108,17 @@ void LCD::posion(uint8_t col , uint8_t row){
 void LCD::lcd_clear(){
     this->mlcd.clear();
 }
+
+void LCD::lcd_clear_database_screen(){
+    this->mlcd.clear();
+    this->mlcd.setCursor(0,0);
+    this->mlcd.print("Clear data <Ent>");
+    this->mlcd.cursor_off();
+}
+
+void LCD::lcd_clear_database_success(){
+    this->mlcd.clear();
+    this->mlcd.setCursor(1,0);
+    this->mlcd.print("Clear success!");
+    this->mlcd.cursor_off();
+}

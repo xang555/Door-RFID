@@ -108,6 +108,11 @@ bool deleteByUid(int uid)
     return false;
 } // delete by uid
 
+// clear database
+void clearDatabase(){
+    db.clear();
+}
+
 /* ----------------- get Button Clcik ------------- */
 
 bool checkButtonIsClick(uint8_t btnPin) {
@@ -233,9 +238,9 @@ void handleScanCard(uint8_t& state) {
               delay(2000);
               #endif
               tone_on(); // tone 
-              digitalWrite(RELAY_SWITCH,HIGH);
-              delay(3000);
               digitalWrite(RELAY_SWITCH,LOW);
+              delay(3000);
+              digitalWrite(RELAY_SWITCH,HIGH);
         }
 
         if(is_esp_open_door()){ 
@@ -244,9 +249,9 @@ void handleScanCard(uint8_t& state) {
               delay(2000);
               #endif
               tone_on(); // tone 
-              digitalWrite(RELAY_SWITCH,HIGH);
-              delay(3000);
               digitalWrite(RELAY_SWITCH,LOW);
+              delay(3000);
+              digitalWrite(RELAY_SWITCH,HIGH);
         }
 
         String uuid = mrfid.readRDIDCard(); // read card
@@ -257,9 +262,9 @@ void handleScanCard(uint8_t& state) {
               delay(2000);
               #endif
               tone_on(); // tone 
-              digitalWrite(RELAY_SWITCH,HIGH);
-              delay(3000);
               digitalWrite(RELAY_SWITCH,LOW);
+              delay(3000);
+              digitalWrite(RELAY_SWITCH,HIGH);
           }else {
               #ifdef DEBUG
               Serial.println("Access fail");
@@ -467,7 +472,11 @@ void handleDeleteRfidCard(uint8_t& state) {
         }else if(btn_key == EXT_BUTTON){ // return
             state = 2;
             return;
+        }else if (btn_key == ENT_BUTTON) {
+            state = 7;
+            return;
         }
+        
     }
 }
 
@@ -575,6 +584,48 @@ void handleDeleteRfidByUID(uint8_t& state) {
 
 } // handle delete by uid
 
+// --------------- handle clear database ---------------
+void handleClearDatabase(uint8_t& state) {
+
+    uint8_t clear_state = 0;
+
+    while(true){
+    
+        switch (clear_state)
+        {
+            case 0:
+
+                mlcd.lcd_clear_database_screen();
+
+                while (clear_state == 0)
+                {
+
+                    uint8_t btn_key = getButtonClick();
+                    if (btn_key == EXT_BUTTON)
+                    {
+                        clear_state = -1;
+                    }else if(btn_key == ENT_BUTTON){
+                        clearDatabase();
+                        clear_state = 1;
+                    } 
+
+                } //while
+
+                break;
+            case 1:
+                mlcd.lcd_clear_database_success();
+                delay(3000);
+                clear_state = 0;
+                break;
+            default:
+                state = 4;
+                return;
+        }
+
+    }
+    
+
+}
 
 /*------------------------ setup ----------------------*/
 
@@ -590,7 +641,7 @@ pinMode(EXIT_BUTTON,INPUT);
 pinMode(RELAY_SWITCH,OUTPUT);
 pinMode(ESP_O1_COMMAND,INPUT);
 pinMode(EXIT_INSIDE_BUTTON,INPUT);
-digitalWrite(RELAY_SWITCH,LOW);
+digitalWrite(RELAY_SWITCH,HIGH);
 mrfid.initRFID();
 mlcd.begin();
 
@@ -637,6 +688,11 @@ case 5 :
 case 6 :
     handleDeleteRfidByUID(state);
     break;
+case 7:
+    handleClearDatabase(state);
+    break;
+default:
+    state= 0;
 
 }
 
