@@ -4,7 +4,7 @@
 class LCD {
 
 public :
-    LCD(uint8_t cols , uint8_t rows,uint8_t addrs =0x3F);
+    LCD(uint8_t cols , uint8_t rows,uint8_t addrs =0x3F); // addrs =0x27 and addrs =0x3F
     void begin();
     void lcd_default_screen();
     void lcd_login_screen();
