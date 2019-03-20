@@ -1,9 +1,5 @@
 #include "rfid.h"
 
-#ifndef DEBUG
-#define DEBUG
-#endif
-
 rfid::rfid(uint8_t ss_pin,uint8_t rst_pin) {
   this->m_ss_pin = ss_pin;
   this->m_rst_pin = rst_pin;
@@ -18,16 +14,10 @@ void rfid::initRFID(){
 String rfid::readRDIDCard(){
 
 if (!this->mrfid.PICC_IsNewCardPresent()){
-  #ifdef DEBUG
-    Serial.println(F("PICC_IsNewCardPresent!"));
-  #endif
   return "";
 }
 
 if(!this->mrfid.PICC_ReadCardSerial()){
-  #ifdef DEBUG
-    Serial.println(F("PICC_ReadCardSerial!"));
-  #endif
   return "";
 }
 
@@ -39,9 +29,6 @@ if(!this->mrfid.PICC_ReadCardSerial()){
   if (piccType != MFRC522::PICC_TYPE_MIFARE_MINI &&
     piccType != MFRC522::PICC_TYPE_MIFARE_1K &&
     piccType != MFRC522::PICC_TYPE_MIFARE_4K) {
-    #ifdef DEBUG
-      Serial.println(F("Your tag is not of type MIFARE Classic."));
-    #endif
     return "";
   }
   String strID = "";

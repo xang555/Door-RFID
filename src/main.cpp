@@ -1,10 +1,15 @@
 #include <Arduino.h>
+#ifndef DEBUG
+#include "DEBUG.h"
+#endif
 #include "./rfid/rfid.h"
 #include "./lcd/LCD.h"
 #include "config.h"
 #include "Arduino.h"
 #include <EDB.h>
 #include <EEPROM.h>
+#include "./pn532ext/pn532ext.h"
+
 
 #define TABLE_SIZE 1024       // Arduino 168 or greater
 #define RECORDS_TO_CREATE 100 // records
@@ -20,14 +25,19 @@
 #define ESP_O1_COMMAND 6
 #define EXIT_INSIDE_BUTTON 7
 
-#define DEBUG
-
 const uint8_t NAP_BUTTON = 0;
 const uint8_t BAM_BUTTON = 1;
 const uint8_t ENT_BUTTON = 2;
 const uint8_t EXT_BUTTON = 3;
 
+#ifdef __RFID__
 rfid mrfid(SS_PIN, RST_PIN); // RFID
+#endif
+
+#ifdef __PN532__
+pn532ext mpn532;
+#endif
+
 LCD mlcd(16, 2);
 String uuid;
 
@@ -286,7 +296,14 @@ void handleScanCard(uint8_t &state)
             digitalWrite(RELAY_SWITCH, HIGH);
         }
 
+        #ifdef __RFID__
         uuid = mrfid.readRDIDCard(); // read card
+        #endif
+
+        #ifdef __PN532__
+        uuid = mpn532.readCardId();
+        #endif
+
         if (uuid != "")
         {
             if (findRfidCardByUUID(uuid))
@@ -488,7 +505,14 @@ void handleAddRfidCard(uint8_t &state)
                 }
                 else
                 {
+                    #ifdef __RFID__
                     uuid = mrfid.readRDIDCard();
+                    #endif
+
+                    #ifdef __PN532__
+                    uuid = mpn532.readCardId();
+                    #endif
+
                     if (uuid != "")
                     {
                         tone_on(); //tone
@@ -577,7 +601,14 @@ void handleDeleteRfidByCardID(uint8_t &state)
                 }
                 else
                 {
+                    #ifdef __RFID__
                     uuid = mrfid.readRDIDCard();
+                    #endif
+
+                    #ifdef __PN532__
+                    uuid = mpn532.readCardId();
+                    #endif
+
                     if (uuid != "")
                     {
                         tone_on(); //tone
@@ -734,7 +765,12 @@ void setup()
     pinMode(ESP_O1_COMMAND, INPUT);
     pinMode(EXIT_INSIDE_BUTTON, INPUT);
     digitalWrite(RELAY_SWITCH, HIGH);
+    #ifdef __RFID__
     mrfid.initRFID();
+    #endif
+    #ifdef __PN532__
+    mpn532.begin();
+    #endif
     mlcd.begin();
 
 #ifdef DEBUG
