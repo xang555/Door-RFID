@@ -37,7 +37,7 @@ _nfc.begin();
 
 #endif
 
-_nfc.setPassiveActivationRetries(0xFF);
+_nfc.setPassiveActivationRetries(0x01);
 
     // configure board to read RFID tags
 _nfc.SAMConfig();

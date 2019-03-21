@@ -4,7 +4,11 @@
 #endif
 #include "./rfid/rfid.h"
 #include "./lcd/LCD.h"
+
+#ifndef  __CONFIG_PROGRAM__
 #include "config.h"
+#endif
+
 #include "Arduino.h"
 #include <EDB.h>
 #include <EEPROM.h>
