@@ -17,7 +17,7 @@
 /**
  * comment or uncomment for disable or enable to use LCD 0X3F module
  */
-//#define __3F__
+#define __3F__
 
 const String FIX_ADMIN_PASSWORD = "1234";
 const uint8_t FIX_ADMIN_PASSWD_LENGHT = 4;

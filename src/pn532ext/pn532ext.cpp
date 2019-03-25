@@ -4,7 +4,8 @@
 #include "../DEBUG.h"
 #endif
 
-pn532ext::pn532ext(){
+pn532ext::pn532ext()
+{
     _pn532i2c = PN532_I2C(Wire);
     _nfc = PN532(_pn532i2c);
 }
@@ -16,7 +17,7 @@ void pn532ext::begin()
     Serial.println("Hello!");
 #endif
 
-_nfc.begin();
+    _nfc.begin();
 
 #ifdef DEBUG
     uint32_t versiondata = _nfc.getFirmwareVersion();
@@ -37,10 +38,10 @@ _nfc.begin();
 
 #endif
 
-_nfc.setPassiveActivationRetries(0x01);
+    _nfc.setPassiveActivationRetries(0x01);
 
     // configure board to read RFID tags
-_nfc.SAMConfig();
+    _nfc.SAMConfig();
 
 #ifdef DEBUG
     Serial.println("Waiting for an ISO14443A card");
@@ -62,22 +63,25 @@ String pn532ext::readCardId()
 
     if (success)
     {
-        #ifdef DEBUG
+#ifdef DEBUG
         Serial.println("Found a card!");
         Serial.print("UID Length: ");
         Serial.print(uidLength, DEC);
         Serial.println(" bytes");
         Serial.print("UID Value: ");
-        #endif
+#endif
 
-        for (uint8_t i = 0; i < uidLength; i++)
+        if (uidLength == 4)
         {
-            _uid += (uid[i] < 0x10 ? "0" : "") + String(uid[i], HEX) + (i != 3 ? ":" : "");
+            for (uint8_t i = 0; i < uidLength; i++)
+            {
+                _uid += (uid[i] < 0x10 ? "0" : "") + String(uid[i], HEX) + (i != 3 ? ":" : "");
+            }
+            _uid.toUpperCase();
+#ifdef DEBUG
+            Serial.println(_uid);
+#endif
         }
-        _uid.toUpperCase();
-        #ifdef DEBUG
-        Serial.println(_uid);
-        #endif
     }
     else
     {
@@ -88,5 +92,4 @@ String pn532ext::readCardId()
     }
 
     return _uid;
-
 }
